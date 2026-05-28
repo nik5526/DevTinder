@@ -1,28 +1,24 @@
 const express = require("express");
-
+const connectDB = require("./config/database");
 const app = express();
 
-app.use("/admin",(req,res,next)=>{
-    const tokens = "xyz";
-    const Authentication = tokens === "xyz";
-    if(!Authentication){
-        res.status(401).send("Unautherized request");
+app.get("/getuserData",(req,res)=>{
+    throw new Error("nkjendiewk");
+    res.send("User Data sent");
+});
+
+app.use("/",(err,req,res,next)=>{
+    if(err){
+        res.status(500).send("Something Gone wrong");
     }
-    else{
-        next();
-    }
-});
-
-app.get("/admin/MainData",(req,res)=>{
-    res.send("data is sent");
-});
-
-app.get("/admin/deleteData",(req,res)=>{
-    res.send("Data is deleted");
 });
 
 
-
-app.listen(3000,()=>{
+connectDB().then(()=>{
+    console.log("DataBase is Connected .");
+    app.listen(3000,()=>{
     console.log("Server is successfully listening on port 3000...");
-})
+}) 
+}).catch((err)=>{
+    console.log("Database id not connected .");
+});

@@ -18,4 +18,13 @@ const ValidateSignup = (req)=>{
     //you can add many more validators just like them.
 };
 
-module.exports = ValidateSignup ;
+const UpdateProfile = (req)=>{
+    const ApprovedChanges = [
+        "firstName" , "lastName" , "age" , "gender" ,"photoUrl" 
+    ];
+
+
+   return Object.keys(req.body).every((k)=> ApprovedChanges.includes(k));
+}
+
+module.exports = {ValidateSignup , UpdateProfile} ;

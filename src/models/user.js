@@ -1,5 +1,7 @@
+const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcryptjs");
 
 const  userSchema = new mongoose.Schema({
     firstName : {
@@ -59,7 +61,22 @@ const  userSchema = new mongoose.Schema({
     timestamps : true,
 });
 
-// The model name should be capital because it defines the model of mongoose.
-const User = mongoose.model("User",userSchema);
+//dont use arrow function here otherwise it will messup.
+userSchema.methods.getJWT = async function() {
+    const user = this;
 
-module.exports = User;
+    const token = await jwt.sign({_id : user._id},"nik@54321",{expiresIn : '1d'});
+
+    return token;
+}
+
+userSchema.methods.isVerified = async function(passwordEnteredByUser) {
+    const user = this;
+    const passwordHash = user.password;
+    const isValid = await bcrypt.compare(passwordEnteredByUser , passwordHash);
+
+    return isValid;
+}
+
+// The model name should be capital because it defines the model of mongoose.
+module.exports = mongoose.model("User",userSchema);

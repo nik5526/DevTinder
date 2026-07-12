@@ -1,4 +1,5 @@
 const validator = require("validator");
+const User = require("../models/user");
 
 const ValidateSignup = (req)=>{
     const {firstName , lastName , emailId , password} = req.body;
@@ -27,4 +28,6 @@ const UpdateProfile = (req)=>{
    return Object.keys(req.body).every((k)=> ApprovedChanges.includes(k));
 }
 
-module.exports = {ValidateSignup , UpdateProfile} ;
+
+
+module.exports = {ValidateSignup , UpdateProfile } ;

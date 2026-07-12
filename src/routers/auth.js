@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const cookie = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const userAuth = require("../middlewares/auth");
+const {ValidateSignup} = require("../utils/ValidateSignup");
 
 const authRouter = express.Router();
 
@@ -49,7 +50,6 @@ authRouter.post("/login",async (req,res)=>{
 
             const token = await user.getJWT();
             // first one will be what you have to hide and second one will be the password you set that only you know.
-            console.log(token);
             //wrap jwt in cookies
             res.cookie("token",token , 
                 {expires : new Date(Date.now() + 8 * 3600000)});//it will expires in 8 hrs.

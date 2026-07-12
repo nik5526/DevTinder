@@ -2,7 +2,6 @@ const express = require("express");
 const connectDB = require("./config/database");
 const app = express();
 exports.app = app;
-const {ValidateSignup,UpdateProfile} = require("./utils/ValidateSignup");
 const cookie = require("cookie-parser");
 app.use(express.json());
 app.use(cookie());

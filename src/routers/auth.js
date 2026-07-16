@@ -16,12 +16,12 @@ authRouter.post("/signup",async (req,res)=>{
         ValidateSignup(req);
 
         //encrypt the password
-        const {firstName , lastName , emailId , password} = req.body;
+        const {firstName , lastName , emailId , password , age , gender} = req.body;
 
         const passwordHash = await bcrypt.hash(password ,10);
 
         //creating the new instance of the user .
-        const user = new User({firstName , lastName , emailId , password : passwordHash});
+        const user = new User({firstName , lastName , emailId , password : passwordHash , age , gender});
 
         await user.save();
         res.send("Data Added Successfully");

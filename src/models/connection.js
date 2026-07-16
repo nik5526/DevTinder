@@ -5,10 +5,13 @@ const connectionRequestSchema  = new mongoose.Schema({
 
         //by using this we can 
         type : mongoose.Schema.Types.ObjectId,
+        //this means we are creating the relation bw User and connectionRequestSchema , it is giving reference to the user collection.
+        ref : "User",
         required : true
     },
     toUserId : {
         type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
         required : true
     },
     status : {

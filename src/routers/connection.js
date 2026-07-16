@@ -66,7 +66,7 @@ connectionRouter.post("/request/send/:status/:toUserId", userAuth ,async (req,re
 
 })
 
-connectionRouter.post("/request/receive/:status/:fromUserId" ,userAuth ,async (req,res)=>{
+connectionRouter.post("/request/receive/:status/:requestId" ,userAuth ,async (req,res)=>{
     try{
         // So here is the first thing that we have to keep in mind that the login user must be toUserId one means only he can see who has sent him the request and wheather to accept it or reject it .
         const loginUser = req.user;
@@ -75,7 +75,7 @@ connectionRouter.post("/request/receive/:status/:fromUserId" ,userAuth ,async (r
         const validStatus = ["accepted" , "rejected"];
         if(!validStatus.includes(status)){
             return res.status(400).json({
-            message : ststus + " is not valid!"
+            message : status + " is not valid!"
             });
         }
         // here we should work on if the status is interested than only it will work. 

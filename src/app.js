@@ -9,12 +9,14 @@ app.use(cookie());
 const authRouter = require("./routers/auth");
 const profileRouter = require("./routers/profile");
 const connectionRouter = require("./routers/connection");
+const userRouter = require("./routers/user");
 
 
 //So by using the use what it will do it will go one by one in the each routes and will compare it with the request you have send like profile and anything else , first it will go to authRouter in auth router it will check if profile exists or not then it will go to profileRouter and will return the output as it encounter.
 app.use("/",authRouter);
 app.use("/",profileRouter);
 app.use("/",connectionRouter);
+app.use("/",userRouter);
 
 
 

@@ -3,6 +3,11 @@ const connectDB = require("./config/database");
 const app = express();
 exports.app = app;
 const cookie = require("cookie-parser");
+const cors = require("cors");
+app.use(cors({
+    origin : "http://localhost:5173",
+    credentials : true,
+}));
 app.use(express.json());
 app.use(cookie());
 
@@ -20,60 +25,6 @@ app.use("/",userRouter);
 
 
 
-// app.get("/user", async(req,res)=>{
-
-//     const userEmail = req.body.emailId;
-
-
-//     try{
-//         const users = await User.find({emailId : userEmail});
-        
-//         if(!users){
-//             res.status(401).send("users not found");
-//         }
-//         else{
-//             res.send(users);
-//         }
-
-//     }catch(err){
-//         res.status(401).send("Something is wrong" + err.message);
-//     }
-// });
-
-// app.delete("/deleteUser",async(req,res)=>{
-//     const userId = req.body.userId;
-    
-//     try{
-//         const deleteUser = await User.findByIdAndDelete(userId);
-//         res.send("deleted user succesfully");
-//     }catch(err){
-//         res.status(403).send("Something went wrong" + err.message);
-//     }
-// });
-
-// app.patch("/update/:userId",async(req,res)=>{
-//     const userId = req.params?.userId;
-//     const data = req.body;
-
-
-//     try{
-//         const ApprovedChanges = [
-//         "userId", "firstName", "lastName", "age", "gender", "password"
-//         ];
-
-//         const changes = Object.keys(data).every((k)=> ApprovedChanges.includes(k) );
-//         if(!changes){
-//         throw new Error(" Data can't be modified ");
-//         }
-//         const update = await User.findByIdAndUpdate({_id : userId},data , {
-//             runValidators : true,
-//         });
-//         res.send("update succesfully");
-//         }catch(err){
-//             res.status(404).send("Something went wrong " + err.message);
-//         }
-// });
-
 connectDB().then(()=>{
     console.log("DataBase is Connected .");
     app.listen(3000,()=>{
@@ -81,6 +32,7 @@ connectDB().then(()=>{
 }) 
 }).catch((err)=>{
     console.log("Database is not connected .");
+    console.error(err);
 });
 
  

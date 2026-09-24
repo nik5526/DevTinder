@@ -2,25 +2,38 @@ import Navbar from "./navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import {Base_Url} from "../utils/const";
-import {useDispatch} from "react-redux";
+import {useDispatch,useSelector} from "react-redux";
 import {addUser} from "../utils/userSlice";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import {useEffect} from "react";
 
 const Body = ()=>{
+
+    const userData = useSelector((store)=> store.user);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
     const viewProfile = async ()=>{
         try{
-            const res = axios.get(Base_Url + "/profile/view" , {withCredentials : true});
+            const res = await axios.get(Base_Url + "/profile/view" , {withCredentials : true,});
             dispatch(addUser(res.data));
-            navigate("/profile/view");
+            console.log(res.data);
         }
         catch(err){
-            console.log(err);
+            if(err.status === 401){
+                navigate("/signin");
+            }
+            console.error(err);
         }
     }
+    useEffect(() => { 
+        if(!userData){
+            viewProfile();
+        }
+            
+        },[]);
     return <>
         <div className = "flex min-h-screen flex-col " >
             <Navbar/>

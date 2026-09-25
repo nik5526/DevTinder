@@ -5,7 +5,7 @@ const userAuth = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connection");
 const User = require("../models/user"); 
 
-const Safe_Populate_Method = "firstName lastName age gender photoUrl";
+const Safe_Populate_Method = "firstName lastName age gender photoUrl about";
 
 userRouter.get("/user/request/received",userAuth,async (req,res)=>{
     try{
@@ -58,7 +58,7 @@ userRouter.get("/user/feed" , userAuth ,async (req,res)=>{
     try{
         const loggedUser = req.user;
 
-        const User_Safe_Data = ["firstName" , "lastName" , "age" , "gender" , "photoUrl"];
+        const User_Safe_Data = ["firstName" , "lastName" , "age" , "gender" , "photoUrl" , "about"];
  
         const page = parseInt(req.query.page) || 1;
         let limit = parseInt(req.query.limit) || 10;

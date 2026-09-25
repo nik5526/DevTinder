@@ -58,6 +58,12 @@ const  userSchema = new mongoose.Schema({
             }
         }
     },
+    about : {
+        type : String,
+        default : "Hii i am a Software Developer in the xyz company, looking forward to connect.",
+        maxLength : 500,
+        trim : true,
+    },
 },{
     timestamps : true,
 });

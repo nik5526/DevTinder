@@ -21,7 +21,7 @@ const ValidateSignup = (req)=>{
 
 const UpdateProfile = (req)=>{
     const ApprovedChanges = [
-        "firstName" , "lastName" , "age" , "gender" ,"photoUrl" 
+        "firstName" , "lastName" , "age" , "gender" ,"photoUrl" , "about"
     ];
 
 

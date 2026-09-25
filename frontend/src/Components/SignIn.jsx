@@ -10,6 +10,7 @@ const SignIn = () => {
 
     const [emailId , setEmailId] = useState("bhuvnesh@gmail.com");
     const [password , setPassword] = useState("Bhuvnesh@54321");
+    const [error,setError] = useState();
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const SignIn = () => {
             dispatch(addUser(res.data));
             return navigate("/");
         }catch(err){
-            console.log("Error : " + err.message);
+            setError(err?.response?.data || "Something went wrong");
         }
         
     }
@@ -58,6 +59,7 @@ const SignIn = () => {
             placeholder="abc***** "
             onChange = {(e)=> setPassword(e.target.value)}
           />
+          <p className="font-semibold  text-red-600 ">{error}</p>
         </fieldset>
         <button className=" bg-blue-900 p-3 rounded-xl cursor-pointer hover:bg-blue-800" 
         onClick = {userLogin}>Sign In</button>

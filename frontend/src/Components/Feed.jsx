@@ -27,8 +27,10 @@ const Feed = () => {
   return (
     //have done this otherwise it will give the error if the feed is not present.
     feed && (
-      <div className="flex h-[70vh] justify-center items-center">
-        <FeedCard user={feed[8]} />
+      <div className="flex-1 flex items-center justify-center">
+        <div className="w-full max-w-3xl">
+          <FeedCard user={feed[8]} />
+        </div>
       </div>
     )
   );

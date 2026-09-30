@@ -1,17 +1,15 @@
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Base_Url } from "../utils/const";
-import {removeUser} from "../utils/userSlice";
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import { removeUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
-
   //it will keep the ui clean.
   const user = useSelector((store) => store.user);
 
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,9 +24,7 @@ const Navbar = () => {
       );
       dispatch(removeUser());
       return navigate("/signin");
-    } catch (err) {
-      
-    }
+    } catch (err) {}
   };
 
   return (
@@ -40,21 +36,23 @@ const Navbar = () => {
           </Link>
         </div>
         {user ? (
-          <div className="flex mr-2">
-            <div className="dropdown dropdown-end flex items-center gap-3">
-              <span>Hi, {user.firstName}</span>
+          <div className="flex items-center gap-3 mr-2">
+            <span>Hi, {user.firstName}</span>
+
+            <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar "
+                className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
                   <img alt="user profile picture" src={user.photoUrl} />
                 </div>
               </div>
+
               <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
               >
                 <li>
                   <Link to="/profile" className="justify-between">
@@ -62,11 +60,13 @@ const Navbar = () => {
                     <span className="badge">New</span>
                   </Link>
                 </li>
+
                 <li>
                   <a>Settings</a>
                 </li>
+
                 <li>
-                  <a onClick ={handleLogout} >Logout</a>
+                  <a onClick={handleLogout}>Logout</a>
                 </li>
               </ul>
             </div>

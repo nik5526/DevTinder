@@ -30,7 +30,7 @@ const EditProfile = ({ user }) => {
       setToast(true);
       setTimeout(()=>{
         setToast(false);
-      },4000);
+      },2500);
     } catch (err) {
       setError(err?.response?.data);
     }
@@ -118,7 +118,7 @@ const EditProfile = ({ user }) => {
 
           <div className="flex justify-center">
             <button
-              className="bg-blue-900 p-3 rounded-xl cursor-pointer hover:bg-blue-800 min-w-[180px]}"
+              className="bg-blue-900 p-3 rounded-xl cursor-pointer hover:bg-blue-800 min-w-45}"
               onClick={saveProfile}
             >
               Save Profile

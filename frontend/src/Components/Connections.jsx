@@ -29,15 +29,15 @@ const Connections = () => {
     return <div className="text-center">No Connections Found!</div>;
 
   return (
-    <div className= " ">
+    <div >
       <div className="text-center flex flex-col gap-3 max-w-208 m-auto p-2 justify-center ">
         <h1 className="text-3xl font-bold my-4 ">Connections </h1>
         {connections.map((connection) => {
-          const { firstName, lastName, photoUrl, age, gender, about } =
+          const { _id, firstName, lastName, photoUrl, about } =
             connection;
 
           return (
-            <div key={connection._id} className = "flex border bg-gray-900 gap-4 m-2 rounded-2xl">
+            <div key={_id} className = "flex border bg-gray-900 gap-4 m-2 rounded-2xl">
               <div> <img className ="w-30 h-30 rounded-l-2xl" src = {photoUrl} alt = "photo" /></div>
               <div className="flex flex-col gap-2 mt-3 ml-4">
                 {firstName + " " +lastName}

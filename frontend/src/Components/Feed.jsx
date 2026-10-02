@@ -7,7 +7,6 @@ import FeedCard from "./FeedCard";
 
 const Feed = () => {
   const feed = useSelector((store) => store.feed);
-  console.log(feed);
   const dispatch = useDispatch();
 
   const getFeed = async () => {
@@ -29,7 +28,7 @@ const Feed = () => {
     feed && (
       <div className="flex-1 flex items-center justify-center">
         <div className="w-full max-w-3xl">
-          <FeedCard user={feed[8]} />
+          <FeedCard user={feed[3]} />
         </div>
       </div>
     )

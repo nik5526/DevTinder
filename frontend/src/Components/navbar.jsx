@@ -4,7 +4,6 @@ import axios from "axios";
 import { Base_Url } from "../utils/const";
 import { removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 const Navbar = () => {
   //it will keep the ui clean.
@@ -24,7 +23,9 @@ const Navbar = () => {
       );
       dispatch(removeUser());
       return navigate("/signin");
-    } catch (err) {}
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -62,7 +63,15 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                  <a>Settings</a>
+                  <Link to="/connections">
+                    Connections
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/requests">
+                    Requests
+                  </Link>
                 </li>
 
                 <li>

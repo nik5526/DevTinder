@@ -7,13 +7,15 @@ const FeedCard = ({ user, compact = false }) => {
         compact ? "max-w-2xl" : "max-w-4xl"
       }`}
     >
-      <figure className={compact ? "w-44 shrink-0" : "w-64 shrink-0"}>
-        <img
-          src={photoUrl}
-          alt="photo"
-          className="w-full h-full object-cover"
-        />
-      </figure>
+      {photoUrl && (
+        <figure className={compact ? "w-44 shrink-0" : "w-64 shrink-0"}>
+          <img
+            src={photoUrl}
+            alt="photo"
+            className="w-full h-full object-cover"
+          />
+        </figure>
+      )}
 
       <div className="card-body justify-start">
         <h2 className="card-title">

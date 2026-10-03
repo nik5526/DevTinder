@@ -14,7 +14,7 @@ userRouter.get("/user/request/received",userAuth,async (req,res)=>{
         const ConnectionRequestReceived = await ConnectionRequest.find({
             toUserId : loginUser._id,
             status : "interested", 
-        }).populate("fromUserId" , ["firstName" , "lastName" , "age" , "gender" , "photoUrl"]);
+        }).populate("fromUserId" , ["firstName" , "lastName" , "age" , "gender" , "photoUrl" , "about"]);
 
         res.json({
             message : "Connection Request received are... ",
@@ -38,7 +38,7 @@ userRouter.get("/user/connection",userAuth,async (req,res)=>{
 
         const data = connectionsWith.map((row) => {
             //we are using if statement as we have to only display the one who we are connected to display. And we are using to string after the compare statement because these id's are of mongoose and we can't compare them directly so first we have to convert them to string.
-            if(row.toUserId.toString() === loggedUser._id.toString()){
+            if(row.toUserId._id.toString() === loggedUser._id.toString()){
                 return row.fromUserId;
             }
             return row.toUserId;

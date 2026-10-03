@@ -29,9 +29,8 @@ const FeedCard = ({ user, compact = false }) => {
         </div>
 
         <div className="card-actions mt-auto justify-center">
-          <button className="btn btn-primary bg-red-400">Ignore</button>
-
-          <button className="btn btn-primary bg-green-400">Send Request</button>
+          <button className="btn btn-active btn-success">Send Request</button>
+          <button className="btn btn-active btn-error">Ignore</button>
         </div>
       </div>
     </div>

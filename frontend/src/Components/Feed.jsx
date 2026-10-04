@@ -23,12 +23,23 @@ const Feed = () => {
   useEffect(() => {
     getFeed();
   }, []);
+
+  if (!feed) return;
+
+  if (feed.length === 0)
+    return (
+      <div className="text-center text-3xl font-bold my-4 ">
+        No New User Available!
+      </div>
+    );
+
+
   return (
     //have done this otherwise it will give the error if the feed is not present.
     feed && (
       <div className="flex-1 flex items-center justify-center">
         <div className="w-full max-w-3xl">
-          <FeedCard user={feed[3]} />
+          <FeedCard user={feed[0]} />
         </div>
       </div>
     )

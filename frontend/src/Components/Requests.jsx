@@ -22,7 +22,7 @@ const Requests = () => {
     try {
       //we have sent a {} empty bracets because it is a post call and in post call we have to send the data but here we dont have to sent the data so we have sent empty bracets.
       const res = await axios.post(
-        Base_Url + "/request/receive" + "/" + status + "/" + _id,
+        Base_Url + "/request/receive/" + status + "/" + _id,
         {},
         { withCredentials: true },
       );

@@ -1,5 +1,24 @@
+import axios from "axios";
+import { Base_Url } from "../utils/const";
+import { useDispatch } from "react-redux";
+import { removeFeed } from "../utils/feedSlice";
+
 const FeedCard = ({ user, compact = false }) => {
-  const { photoUrl, firstName, lastName, age, gender, about } = user;
+  const { _id, photoUrl, firstName, lastName, age, gender, about } = user;
+  const dispatch = useDispatch();
+
+  const manageFeed = async (status, _id) => {
+    try {
+      const res = await axios.post(
+        Base_Url + "/request/send/" + status + "/" + _id,
+        {},
+        { withCredentials: true },
+      );
+      dispatch(removeFeed(_id));
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   return (
     <div
@@ -29,8 +48,18 @@ const FeedCard = ({ user, compact = false }) => {
         </div>
 
         <div className="card-actions mt-auto justify-center">
-          <button className="btn btn-active btn-success">Send Request</button>
-          <button className="btn btn-active btn-error">Ignore</button>
+          <button
+            className="btn btn-active btn-success"
+            onClick={() => manageFeed("interested", _id)}
+          >
+            Send Request
+          </button>
+          <button
+            className="btn btn-active btn-error"
+            onClick={() => manageFeed("ignored", _id)}
+          >
+            Ignore
+          </button>
         </div>
       </div>
     </div>

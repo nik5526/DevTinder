@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 // we are using async await so that we can check if the connection is successfully established or not.
 const connectDB = async()=>{
+    console.log(process.env.DB_CONNECTION_SECRET);
     await mongoose.connect(
-        "mongodb+srv://nikhilrajy909_db_user:2csQNrnqDlNqcL30@nik.shkqfv8.mongodb.net/DevTinder"
+       process.env.DB_CONNECTION_SECRET
     );
 };
 
